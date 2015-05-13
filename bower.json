@@ -1,15 +1,13 @@
 {
-	"name": "object.assign",
+	"name": "Object.assign",
 	"main": "index.js",
-	"version": "0.2.1",
-	"homepage": "https://github.com/ljharb/object.assign",
+	"version": "1.0.0",
+	"homepage": "https://github.com/BendingBender/object.assign",
 	"authors": [
-		"Jordan Harband <ljharb@gmail.com>"
+		"Jordan Harband <ljharb@gmail.com>",
+		"Dimitri Benin <semtexx@web.de>"
 	],
 	"description": "ES6 spec-compliant Object.assign shim.",
-	"moduleType": [
-		"node"
-	],
 	"keywords": [
 		"Object.assign",
 		"assign",
