@@ -103,23 +103,10 @@ assert.deepEqual(Object.assign(target, source), assign(target, source));
 ```js
 var assert = require('assert');
 /* when Object.assign is present */
-var builtinAssign = Object.assign || function(){};
-Object.assign = builtinAssign;
+assert.equal(typeof Object.assign, 'function');
+var builtinAssign = Object.assign;
 require('object.assign');
 assert.equal(builtinAssign, Object.assign);
-
-var target = {
-	a: true,
-	b: true,
-	c: true
-};
-var source = {
-	c: false,
-	d: false,
-	e: false
-};
-
-assert.deepEqual(Object.assign(target, source), assign(target, source));
 ```
 
 ## Tests
