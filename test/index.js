@@ -124,7 +124,7 @@ test('does not fail when symbols are not present', function (t) {
 
 /*eslint-disable no-new-func */
 test('shims the "assign" function on Object ctor', function (t) {
-	var reapplyAssignShim = new Function(require('fs').readFileSync(__dirname + '/../index.js', {encoding: 'utf8'}));
+	var reapplyAssignShim = new Function(require('fs').readFileSync('index.js', {encoding: 'utf8'}));
 
 	t.test('when Object.assign is present', function (st) {
 		var currObjectAssign = Object.assign;
