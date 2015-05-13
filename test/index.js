@@ -1,5 +1,10 @@
+'use strict';
+
 var test = require('tape');
-var assign = require('../index.js');
+var origObjectAssign = Object.assign;
+delete Object.assign;
+require('../index.js');
+var assign = Object.assign;
 var hasSymbols = typeof Symbol === 'function' && typeof Symbol() === 'symbol';
 
 test('error cases', function (t) {
@@ -117,35 +122,37 @@ test('does not fail when symbols are not present', function (t) {
 	t.end();
 });
 
-test('exports a "shim" function', function (t) {
-	t.equal(typeof assign.shim, 'function', 'assign.shim is a function');
+/*eslint-disable no-new-func */
+test('shims the "assign" function on Object ctor', function (t) {
+	var reapplyAssignShim = new Function(require('fs').readFileSync(__dirname + '/../index.js', {encoding: 'utf8'}));
 
 	t.test('when Object.assign is present', function (st) {
-		var originalObjectAssign = Object.assign;
-		Object.assign = function () {};
-		var shimmedAssign = assign.shim();
-		st.notEqual(Object.assign, assign, 'Object.assign is not overridden');
-		st.equal(shimmedAssign, Object.assign, 'Object.assign is returned');
-		Object.assign = originalObjectAssign;
+		var currObjectAssign = Object.assign;
+		var pseudoOrigAssign = function () {};
+		Object.assign = pseudoOrigAssign;
+		reapplyAssignShim();
+
+		st.equal(Object.assign, pseudoOrigAssign, 'Object.assign is not overridden');
+
+		Object.assign = currObjectAssign;
 		st.end();
 	});
 
 	t.test('when Object.assign is not present', function (st) {
-		var originalObjectAssign = Object.assign;
+		var currObjectAssign = Object.assign;
 		delete Object.assign;
-		var shimmedAssign = assign.shim();
-		st.equal(Object.assign, assign, 'Object.assign is overridden');
-		st.equal(shimmedAssign, assign, 'shim is returned');
+		reapplyAssignShim();
+
+		st.equal(typeof Object.assign, 'function', 'Object.assign is shimmed');
 		if (Object.getOwnPropertyDescriptor) {
 			st.equal(Object.getOwnPropertyDescriptor(Object, 'assign').enumerable, false, 'is not enumerable');
 		}
-		Object.assign = originalObjectAssign;
+
+		Object.assign = currObjectAssign;
 		st.end();
 	});
 
-	t.test('when Object.assign is present and has pending exceptions', { skip: !Object.assign || !Object.preventExtensions }, function (st) {
-		'use strict';
-
+	t.test('when Object.assign is present and has pending exceptions', { skip: !origObjectAssign || !Object.preventExtensions }, function (st) {
 		// Firefox 37 still has "pending exception" logic in its Object.assign implementation,
 		// which is 72% slower than our shim, and Firefox 40's native implementation.
 		var thrower = Object.preventExtensions({ 1: 2 });
@@ -158,9 +165,10 @@ test('exports a "shim" function', function (t) {
 
 	t.end();
 });
+/*eslint-enable no-new-func */
 
 test('working with actual shim', function (t) {
-	t.notEqual(Object.assign, assign, 'assign shim is not native Object.assign');
+	t.notEqual(Object.assign, origObjectAssign, 'assign shim is not native Object.assign');
 	t.end();
 });
 
