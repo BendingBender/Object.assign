@@ -8,7 +8,8 @@
 [![browser support][testling-png]][testling-url]
 -->
 
-An Object.assign shim. Works in browsers and node/io.js. Shims only when necessary.
+An Object.assign shim for ES5-compliant environments (browsers/node.js/io.js). Is applied
+only when needed with a few exceptions for non-compliant implementations.
 
 Takes a minimum of 2 arguments: `target` and `source`.
 Takes a variable sized list of source arguments - at least 1, as many as you want.
