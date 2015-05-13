@@ -32,7 +32,8 @@
             };
         };
 
-        var assignShim = function assign(target, source1) {
+        // per ES6 spec, this function has to have a length of 2
+        var assignShim = function assign(target, source1) { //eslint-disable-line no-unused-vars
             if (!canBeObject(target)) {
                 throw new TypeError('target must be an object');
             }
