@@ -15,8 +15,17 @@ Takes a variable sized list of source arguments - at least 1, as many as you wan
 Throws a TypeError if the `target` argument is `null` or `undefined`.
 
 Most common usage:
+
+In node/io.js:
+
 ```js
 require('object.assign');
+```
+
+In a browser:
+
+```html
+<script src="object.assign/index.js"></script>
 ```
 
 ## Example
