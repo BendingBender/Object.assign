@@ -1,8 +1,8 @@
 {
-	"name": "object.assign",
-	"version": "2.0.1",
-	"author": "Jordan Harband",
-	"description": "ES6 spec-compliant Object.assign shim. From https://github.com/es-shims/es6-shim",
+	"name": "Object.assign",
+	"version": "1.0.0",
+	"author": "Dimitri Benin",
+	"description": "ES6 spec-compliant Object.assign shim. From https://github.com/ljharb/object.assign",
 	"license": "MIT",
 	"main": "index.js",
 	"scripts": {
@@ -12,8 +12,6 @@
 		"lint": "npm run jscs && npm run eslint",
 		"eslint": "eslint *.js test/*.js",
 		"jscs": "jscs *.js test/*.js",
-		"build": "mkdir -p dist && browserify browserShim.js > dist/browser.js",
-		"prepublish": "npm run build",
 		"security": "nsp package"
 	},
 	"repository": {
@@ -35,7 +33,6 @@
 		"define-properties": "^1.0.1"
 	},
 	"devDependencies": {
-		"browserify": "^10.1.3",
 		"is": "^3.0.1",
 		"tape": "^4.0.0",
 		"covert": "^1.1.0",
