@@ -2,7 +2,7 @@
 	"name": "Object.assign",
 	"version": "1.0.0",
 	"author": "Dimitri Benin",
-	"description": "ES6 spec-compliant Object.assign shim. From https://github.com/ljharb/object.assign",
+	"description": "ES6 spec-compliant Object.assign shim. From https://github.com/BendingBender/object.assign",
 	"license": "MIT",
 	"main": "index.js",
 	"scripts": {
