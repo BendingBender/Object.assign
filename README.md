@@ -1,4 +1,4 @@
-#Object.assign
+#object.assign
 
 <!--
 [![Build Status][travis-svg]][travis-url]
@@ -20,13 +20,13 @@ Most common usage:
 In node/io.js:
 
 ```js
-require('Object.assign');
+require('object.assign');
 ```
 
 In a browser:
 
 ```html
-<script src="Object.assign/index.js"></script>
+<script src="object.assign/index.js"></script>
 ```
 
 ## Example
@@ -45,7 +45,7 @@ var expected = {
 	n: true
 };
 
-require('Object.assign');
+require('object.assign');
 var assert = require('assert');
 
 Object.assign(target, source1, source2, sourceN);
@@ -53,7 +53,7 @@ assert.deepEqual(target, expected); // AWESOME!
 ```
 
 ```js
-require('Object.assign');
+require('object.assign');
 var assert = require('assert');
 var target = {
 	a: true,
@@ -83,7 +83,7 @@ assert.deepEqual(assigned, {
 var assert = require('assert');
 /* when Object.assign is not present */
 delete Object.assign;
-require('Object.assign');
+require('object.assign');
 assert.equal(typeof Object.assign, "function");
 
 var target = {
@@ -106,7 +106,7 @@ var assert = require('assert');
 /* when Object.assign is present */
 assert.equal(typeof Object.assign, 'function');
 var builtinAssign = Object.assign;
-require('Object.assign');
+require('object.assign');
 assert.equal(builtinAssign, Object.assign);
 ```
 

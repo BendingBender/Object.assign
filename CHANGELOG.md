@@ -1,4 +1,4 @@
-Object.assign - 1.0.0 / 2015-04-15
+object.assign - 1.0.0 / 2015-04-15
 ==================================
   * removed all calls to require
   * module now has no dependencies, it now only runs in ES5+ environments
