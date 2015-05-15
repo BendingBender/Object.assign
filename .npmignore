@@ -1,7 +1,6 @@
 npm-debug.log
 bower.json
-browserShim.js
 .npmignore
 .travis.yml
-.jscs.json
-
+.idea
+*.iml
